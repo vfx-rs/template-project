@@ -1,0 +1,26 @@
+[package]
+name = "project"
+version = "0.1.0"
+authors = ["Your Name <your@email.com>"]
+edition = "2021"
+
+license="BSD-3-Clause"
+description = "Example project"
+documentation = "https://docs.rs/openexr"
+repository = "https://github.com/vfx-rs/template-project"
+readme = "README.md"
+keywords = ["graphics", "image", "vfx", "exr", "openexr"]
+categories = ["api-bindings", "computer-vision", "graphics", "multimedia", "rendering"]
+
+[package.metadata.docs.rs]
+# docs.rs uses a nightly compiler, so by instructing it to use our `doc-images` feature we
+# ensure that it will render any images that we may have in inner attribute documentation.
+# and include the markdown docs
+features = ["long-form-docs"]
+# KateX for math notation
+rustdoc-args = [ "--html-in-header", "katex-header.html" ]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+project-sys = { path = "../build/project-sys" }
