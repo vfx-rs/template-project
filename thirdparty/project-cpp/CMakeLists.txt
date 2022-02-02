@@ -3,10 +3,10 @@ project(Project)
 set(version 1.0)
 
 # Create library
-add_library(Project SHARED project.cpp project.h)
+add_library(Project SHARED adder.cpp adder.hpp)
 
 # Install and export the targets.
-install(FILES project.h DESTINATION include/)
+install(FILES adder.hpp DESTINATION include/)
 install(TARGETS Project
         DESTINATION lib/
         EXPORT project-targets)
