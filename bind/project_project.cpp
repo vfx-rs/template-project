@@ -9,7 +9,7 @@ namespace cppmm_bind
         class Adder
         {
         public:
-            using BoundType = Adder;
+            using BoundType = ::project::Adder;
 
             Adder(int a, int b);
 

@@ -17,7 +17,7 @@ patch_version=0
 
 # Generate ast json files from parsing c++ bind files
 astgen bind -v 1 -u -o build/ast -- \
-    -I${PROJECT_ROOT}/include
+    -Ithirdparty/project-cpp
 
 # Generate c bindings from parsing json ast
 asttoc build/ast -o build -p ${project_name} \
