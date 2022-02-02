@@ -1,4 +1,4 @@
-#include <project.h>
+#include <adder.hpp>
 
 #include <cppmm_bind.hpp>
 
@@ -9,7 +9,7 @@ namespace cppmm_bind
         class Adder
         {
         public:
-            using BoundType = Adder;
+            using BoundType = ::project::Adder;
 
             Adder(int a, int b);
 
