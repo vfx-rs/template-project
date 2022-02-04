@@ -1,6 +1,6 @@
 [package]
-name = "PROJECT_NAME-sys"
-version = "MAJOR_VERSION.MINOR_VERSION.PATCH_VERSION"
+name = "project-sys"
+version = "0.1.0"
 description="cppmm-based FFI bindings for OpenEXR 3.0.5"
 license="BSD-3-Clause"
 authors = ["User Name <user@email.com>"]

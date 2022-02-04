@@ -16,8 +16,8 @@ namespace cppmm_bind
             int a;
             int b;
 
-            int add();
-            void print_add();
+            int add() const;
+            void print_add() const;
         } CPPMM_VALUETYPE CPPMM_TRIVIALLY_COPYABLE CPPMM_TRIVIALLY_MOVABLE;
     } // namespace project
 

@@ -23,4 +23,4 @@ rustdoc-args = [ "--html-in-header", "katex-header.html" ]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-project-sys = { path = "../build/project-sys" }
+project-sys = { path = "../project-sys" }

@@ -1,0 +1,5 @@
+file(GLOB_RECURSE ABIGEN_SOURCE *.cpp)
+add_executable(abigen ${ABIGEN_SOURCE})
+target_include_directories(abigen PRIVATE /home/scott/Projects/template-project/thirdparty/project-cpp)
+target_include_directories(abigen PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
+target_link_libraries(abigen PRIVATE Project)
