@@ -53,6 +53,4 @@ cp test.rs build/${project_name}-sys/src
 # Move the projects over to their proper locations
 rsync -av --delete --remove-source-files build/${project_name}-sys/ ${project_name}-sys/
 find build/${project_name}-sys/ -depth -type d -empty -delete
-rsync -av --delete --remove-source-files ${project_name}-sys/${project_name}-c/ ${project_name}-c/
-find ${project_name}-sys/${project_name}-c/ -depth -type d -empty -delete
-ln -s $(realpath ${project_name}-c/) $(realpath ${project_name}-sys/${project_name}-c/)
+rsync -av --delete ${project_name}-sys/${project_name}-c/ ${project_name}-c/
