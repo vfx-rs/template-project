@@ -41,6 +41,10 @@ jobs:
       # Build your program with the given configuration
       run: sudo make install
 
-    - name: Run tests
+    - name: Run sys crate tests
+      working-directory: ${{github.workspace}}/project-sys
+      run: cargo test --verbose
+
+    - name: Run api crate tests
       working-directory: ${{github.workspace}}/project-rs
       run: cargo test --verbose
