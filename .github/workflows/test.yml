@@ -41,30 +41,24 @@ jobs:
       # Build your program with the given configuration
       run: sudo make install
 
-    - name: Run sys crate tests
+    - name: Run cargo check on sys crate
+      working-directory: ${{github.workspace}}/project-sys
+      run: cargo check
+
+    - name: Run cargo check on api crate
+      working-directory: ${{github.workspace}}/project-rs
+      run: cargo check
+
+    - name: Run clippy on api crate
+      working-directory: ${{github.workspace}}/project-rs
+      run: |
+        rustup component add clippy
+        cargo clippy
+
+    - name: Run tests on sys crate
       working-directory: ${{github.workspace}}/project-sys
       run: cargo test --verbose
 
-    - name: Run api crate tests
+    - name: Run tests api crate
       working-directory: ${{github.workspace}}/project-rs
       run: cargo test --verbose
-
-    - name: Run Miri on sys crate
-      working-directory: ${{github.workspace}}/project-sys
-      run: |
-        MIRI_NIGHTLY=nightly-$(curl -s https://rust-lang.github.io/rustup-components-history/x86_64-unknown-linux-gnu/miri)
-        echo "Installing latest nightly with Miri: $MIRI_NIGHTLY"
-        rustup set profile minimal
-        rustup override set "$MIRI_NIGHTLY"
-        rustup component add miri
-        cargo miri test
-
-    - name: Run Miri on api crate
-      working-directory: ${{github.workspace}}/project-rs
-      run: |
-        MIRI_NIGHTLY=nightly-$(curl -s https://rust-lang.github.io/rustup-components-history/x86_64-unknown-linux-gnu/miri)
-        echo "Installing latest nightly with Miri: $MIRI_NIGHTLY"
-        rustup set profile minimal
-        rustup override set "$MIRI_NIGHTLY"
-        rustup component add miri
-        cargo miri test
