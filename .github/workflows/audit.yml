@@ -26,7 +26,7 @@ jobs:
             ~/.cargo/git/db/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
       - name: Install Cargo Audit
-        if: steps.cache-cargo.outputs.cache-hi != 'true'
+        if: steps.cache-cargo.outputs.cache-hit != 'true'
         run: cargo install cargo-audit
       - name: Run Cargo Audit on sys crate
         working-directory: ${{github.workspace}}/project-sys
