@@ -34,6 +34,18 @@ jobs:
           ${{github.workspace}}/thirdparty/project-cpp/build
         key: ${{ runner.os }}-cpp-${{ matrix.os }}-${{ hashFiles('**/*.cpp', '**/*.hpp', '**/*.h', '**/CMakeLists.txt') }}
 
+    - uses: actions/cache@v2
+      id: cache-rust-project
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          project-sys/target/
+          project-rs/target/
+        key: ${{ runner.os }}-cargo-${{ matrix.os }}-${{ matrix.rust }}-${{ hashFiles('**/Cargo.toml', '**/Cargo.lock') }}
+
     - uses: actions-rs/toolchain@v1
       with:
         profile: minimal
