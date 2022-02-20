@@ -56,19 +56,19 @@ jobs:
       if: steps.cache-cpp-project.outputs.cache-hi != 'true'
       working-directory: ${{github.workspace}}/thirdparty/project-cpp/build
       # Build your program with the given configuration
-      run: cmake --build .
+      run: cmake --build . --config Debug
 
     - name: Install Source Project
       if: matrix.os != 'windows-latest'
       working-directory: ${{github.workspace}}/thirdparty/project-cpp/build
       # Build your program with the given configuration
-      run: sudo cmake --install .
+      run: sudo cmake --install . --config Debug
 
     - name: Install Source Project
       if: matrix.os == 'windows-latest'
       working-directory: ${{github.workspace}}/thirdparty/project-cpp/build
       # Build your program with the given configuration
-      run: cmake --install .
+      run: cmake --install . --config Debug
 
     - name: Run cargo check on sys crate
       working-directory: ${{github.workspace}}/project-sys
