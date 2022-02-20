@@ -30,8 +30,8 @@ jobs:
         if: steps.cache-cargo.outputs.cache-hi != 'true'
         run: cargo install cargo-audit
       - name: Run Cargo Audit on sys crate
-        working-directory: $GITHUB_WORKSPACE/project-sys
+        working-directory: ${{github.workspace}}/project-sys
         run: cargo audit
       - name: Run Cargo Audit on api crate
-        working-directory: $GITHUB_WORKSPACE/project-rs
+        working-directory: ${{github.workspace}}/project-rs
         run: cargo audit
