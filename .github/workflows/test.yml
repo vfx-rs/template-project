@@ -62,13 +62,13 @@ jobs:
       if: ${{ runner.os != 'windows-latest' }}
       working-directory: ${{github.workspace}}/thirdparty/project-cpp/build
       # Build your program with the given configuration
-      run: sudo cmake --build --target install .
+      run: sudo cmake --install .
 
     - name: Install Source Project
       if: ${{ runner.os == 'windows-latest' }}
       working-directory: ${{github.workspace}}/thirdparty/project-cpp/build
       # Build your program with the given configuration
-      run: cmake --build --target install .
+      run: cmake --install .
 
     - name: Run cargo check on sys crate
       working-directory: ${{github.workspace}}/project-sys
