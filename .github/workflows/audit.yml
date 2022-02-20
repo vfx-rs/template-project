@@ -25,7 +25,7 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('~/.cargo/bin', '~/.cargo/advisory-db') }}
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
       - name: Install Cargo Audit
         if: steps.cache-cargo.outputs.cache-hi != 'true'
         run: cargo install cargo-audit
