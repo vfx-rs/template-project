@@ -1,10 +1,9 @@
 name: Security audit
 on:
   push:
-    # Temporarily disable
-    # paths:
-    #   - '**/Cargo.toml'
-    #   - '**/Cargo.lock'
+    paths:
+      - '**/Cargo.toml'
+      - '**/Cargo.lock'
   schedule:
     - cron: '0 0 * * *'
 
