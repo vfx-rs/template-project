@@ -59,13 +59,13 @@ jobs:
       run: cmake --build .
 
     - name: Install Source Project
-      if: ${{ runner.os != 'windows-latest' }}
+      if: matrix.os != 'windows-latest'
       working-directory: ${{github.workspace}}/thirdparty/project-cpp/build
       # Build your program with the given configuration
       run: sudo cmake --install .
 
     - name: Install Source Project
-      if: ${{ runner.os == 'windows-latest' }}
+      if: matrix.os == 'windows-latest'
       working-directory: ${{github.workspace}}/thirdparty/project-cpp/build
       # Build your program with the given configuration
       run: cmake --install .
