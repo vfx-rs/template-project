@@ -32,7 +32,7 @@ jobs:
       with:
         path: |
           ${{github.workspace}}/thirdparty/project-cpp/build
-        key: ${{ runner.os }}-cpp-${{ hashFiles('**/*.cpp', '**/*.hpp', '**/*.h', '**/CMakeLists.txt') }}
+        key: ${{ runner.os }}-cpp-${{ matrix.os }}-${{ hashFiles('**/*.cpp', '**/*.hpp', '**/*.h', '**/CMakeLists.txt') }}
 
     - uses: actions-rs/toolchain@v1
       with:
