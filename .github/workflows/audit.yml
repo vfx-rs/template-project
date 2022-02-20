@@ -1,9 +1,10 @@
 name: Security audit
 on:
   push:
-    paths:
-      - '**/Cargo.toml'
-      - '**/Cargo.lock'
+    # Temporarily disable
+    # paths:
+    #   - '**/Cargo.toml'
+    #   - '**/Cargo.lock'
   schedule:
     - cron: '0 0 * * *'
 
@@ -12,14 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Change directory to sys crate
-        run: cd $GITHUB_WORKSPACE/project-sys
+      - name: Copy the sys crate Cargo.toml to root.
+        run: cp $GITHUB_WORKSPACE/project-sys/Cargo.toml $GITHUB_WORKSPACE/Cargo.toml
       - name: Audit sys crate
         uses: actions-rs/audit-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Change directory to api crate
-        run: cd $GITHUB_WORKSPACE/project-rs
+      - name: Copy the api crate Cargo.toml to root.
+        run: cp $GITHUB_WORKSPACE/project-rs/Cargo.toml $GITHUB_WORKSPACE/Cargo.toml
       - name: Audit api crate
         uses: actions-rs/audit-check@v1
         with:
