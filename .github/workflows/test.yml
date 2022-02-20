@@ -13,8 +13,8 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-latest
-          # - macos-latest
+          # - ubuntu-latest
+          - macos-latest
           # - windows-latest
         rust:
           # TODO: Add an MSRV (Minimal Rust Supported Version)
