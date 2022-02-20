@@ -13,15 +13,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Copy the sys crate Cargo.toml to root.
-        run: cp $GITHUB_WORKSPACE/project-sys/Cargo.toml $GITHUB_WORKSPACE/Cargo.toml
-      - name: Audit sys crate
-        uses: actions-rs/audit-check@v1
+      - uses: actions-rs/toolchain@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Copy the api crate Cargo.toml to root.
-        run: cp $GITHUB_WORKSPACE/project-rs/Cargo.toml $GITHUB_WORKSPACE/Cargo.toml
-      - name: Audit api crate
-        uses: actions-rs/audit-check@v1
+          toolchain: stable
+      - uses: actions/cache@v2
+        id: cache-cargo
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/advisory-db/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('~/.cargo/bin', '~/.cargo/advisory-db') }}
+      - name: Install Cargo Audit
+        if: steps.cache-cargo.outputs.cache-hi != 'true'
+        run: cargo install cargo-audit
+      - name: Run Cargo Audit on sys crate
+        working-directory: $GITHUB_WORKSPACE/project-sys
+        run: cargo audit
+      - name: Run Cargo Audit on api crate
+        working-directory: $GITHUB_WORKSPACE/project-rs
+        run: cargo audit
